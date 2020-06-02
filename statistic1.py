@@ -48,7 +48,7 @@ class Distribucion():
     def probabilidad_condicional_Y_X(self, probabilidades_conjunta, marginal_X):
         matriz_condicional = probabilidades_conjunta.copy()
         for i in range(0,len(marginal_X)):
-            for j in range(0,len(probabilidades_conjunta[i])):
+            for j in range(0,len(probabilidades_conjunta)):
                 resualtado = probabilidades_conjunta[j][i]/marginal_X[i][0]
                 matriz_condicional[j][i]=resualtado
         return matriz_condicional
@@ -57,9 +57,8 @@ class Distribucion():
     def esperanza_condicional_X_Y(self, probabilidad_condicional_X_Y, valores_X):
         sumatoria=0
         for i in range(0,len(valores_X)):
-            for j in range(0,len(probabilidad_condicional_X_Y[i])):
+            for j in range(0,len(probabilidad_condicional_X_Y)):
                 sumatoria = sumatoria + probabilidad_condicional_X_Y[j][i]*valores_X[i]
-        print(sumatoria)
         return sumatoria
 
     def esperanza_condicional_Y_X(self, probabilidad_condicional_Y_X, valores_Y):
@@ -67,7 +66,6 @@ class Distribucion():
         for i in range(0,len(valores_Y)):
             for j in range(0,len(probabilidad_condicional_Y_X[i])):
                 sumatoria = sumatoria + probabilidad_condicional_Y_X[i][j]*valores_Y[i]
-        print(sumatoria)
         return sumatoria
 
     def desviacion_X(self, valores_variable, marginal_valores, esperanza_X):
