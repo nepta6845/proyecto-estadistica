@@ -9,6 +9,7 @@ def imprimir_resultados():
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
     print("Distribución marginal de Y Py: \n")
     u.imprimir_arreglo1xN(distribucion.marginal_Y)
+    print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
 
     esperanza_X = distribucion.esperanza_marginal_X(distribucion.valores_X,distribucion.marginal_X)
     esperanza_Y = distribucion.esperanza_marginal_Y(distribucion.valores_Y,distribucion.marginal_Y)
@@ -17,7 +18,8 @@ def imprimir_resultados():
     print(esperanza_X)
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
     print("\nValor esperado de Y: \n")
-    print(esperanza_X)
+    print(esperanza_Y)
+    print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
 
     probabilidad_condicional_X_Y = distribucion.probabilidad_condicional_X_Y(distribucion.probabilidades_conjunta, distribucion.marginal_Y)
     probabilidad_condicional_Y_X = distribucion.probabilidad_condicional_Y_X(distribucion.probabilidades_conjunta, distribucion.marginal_X)
@@ -27,6 +29,7 @@ def imprimir_resultados():
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
     print("\nProbabilidad condicional P(y|x): \n")
     u.imprimir_arregloNxM(probabilidad_condicional_Y_X)
+    print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
 
     esperanza_condicional_X_Y=distribucion.esperanza_condicional_X_Y(probabilidad_condicional_X_Y, distribucion.valores_X)
     esperanza_condicional_Y_X=distribucion.esperanza_condicional_Y_X(probabilidad_condicional_Y_X, distribucion.valores_Y)
@@ -36,6 +39,7 @@ def imprimir_resultados():
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
     print("\nValor esperado de Y|X: \n")
     print(esperanza_condicional_Y_X)
+    print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
 
     esperanza_conjunta= distribucion.esperanza_conjunta(distribucion.valores_X, distribucion.valores_Y, distribucion.probabilidades_conjunta)
     covarianza = distribucion.covarianza(esperanza_X, esperanza_Y, esperanza_conjunta)

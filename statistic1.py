@@ -5,11 +5,15 @@ import numpy as np
 
 
 class Distribucion():
+    # Se ingresan los valores de las variables
     valores_X = [0, 1, 2]
     valores_Y = [0, 1, 2]
+
+    # Se ingresan los valores de las probabilidades conjuntas
     probabilidades_conjunta= np.array([[1/9, 2/9, 1/9],
-                                   [2/9, 2/9, 0],
-                                   [1/9, 0, 0 ]])
+                                    [2/9, 2/9, 0],
+                                    [1/9, 0, 0 ]])
+    
     marginal_X , marginal_Y = margins(probabilidades_conjunta)
 
     def esperanza_marginal_X(self, valores_variable, marginal_valores):
