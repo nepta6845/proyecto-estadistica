@@ -4,11 +4,14 @@ import utilities as u
 def imprimir_resultados():
     
     distribucion = Distribucion()
+    print("Distribución: \n")
+    u.imprimir_arregloNxM(distribucion.probabilidades_conjunta)
+    print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
     print("Distribución marginal de X Px: \n")
-    u.imprimir_arregloNx1(distribucion.marginal_X)
+    u.imprimir_arreglo1xN(distribucion.marginal_X)
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
     print("Distribución marginal de Y Py: \n")
-    u.imprimir_arreglo1xN(distribucion.marginal_Y)
+    u.imprimir_arregloNx1(distribucion.marginal_Y)
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
 
     esperanza_X = distribucion.esperanza_marginal_X(distribucion.valores_X,distribucion.marginal_X)

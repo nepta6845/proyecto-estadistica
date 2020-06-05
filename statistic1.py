@@ -5,27 +5,34 @@ import numpy as np
 
 
 class Distribucion():
-    # Se ingresan los valores de las variables
+    # Se ingresan los valores de las variables X,Y
     valores_X = [0, 1, 2]
     valores_Y = [0, 1, 2]
+#     valores_X = [0, 1, 2, 3]
+#     valores_Y = [0, 1, 2, 3, 4]
 
     # Se ingresan los valores de las probabilidades conjuntas
     probabilidades_conjunta= np.array([[1/9, 2/9, 1/9],
                                     [2/9, 2/9, 0],
                                     [1/9, 0, 0 ]])
+#     probabilidades_conjunta= np.array([[0.08, 0.07, 0.04, 0.0],
+#                                     [0.06, 0.15, 0.05, 0.04],
+#                                     [0.05, 0.04, 0.1, 0.06 ],
+#                                     [0.0, 0.03, 0.01, 0.07 ],
+#                                     [0.0, 0.01, 0.05, 0.06 ]])
     
-    marginal_X , marginal_Y = margins(probabilidades_conjunta)
+    marginal_Y , marginal_X = margins(probabilidades_conjunta)
 
     def esperanza_marginal_X(self, valores_variable, marginal_valores):
         sumatoria=0
         for i in range(0,len(valores_variable)):
-            sumatoria=sumatoria + valores_variable[i]*marginal_valores[i][0]
+            sumatoria=sumatoria + valores_variable[i]*marginal_valores[0][i]
         return sumatoria
 
     def esperanza_marginal_Y(self, valores_variable, marginal_valores):
         sumatoria=0
         for i in range(0,len(valores_variable)):
-            sumatoria=sumatoria + valores_variable[i]*marginal_valores[0][i]
+            sumatoria=sumatoria + valores_variable[i]*marginal_valores[i][0]
         return sumatoria
 
 
@@ -43,45 +50,50 @@ class Distribucion():
 
     def probabilidad_condicional_X_Y(self, probabilidades_conjunta, marginal_Y):
         matriz_condicional = probabilidades_conjunta.copy()
-        for i in range(0,len(marginal_Y[0])):
+        for i in range(0,len(marginal_Y)):
             for j in range(0,len(probabilidades_conjunta[i])):
-                resualtado = probabilidades_conjunta[i][j]/marginal_Y[0][i]
+                resualtado = probabilidades_conjunta[i][j]/marginal_Y[i][0]
                 matriz_condicional[i][j]=resualtado
         return matriz_condicional
 
     def probabilidad_condicional_Y_X(self, probabilidades_conjunta, marginal_X):
         matriz_condicional = probabilidades_conjunta.copy()
-        for i in range(0,len(marginal_X)):
+        for i in range(0,len(marginal_X[0])):
             for j in range(0,len(probabilidades_conjunta)):
-                resualtado = probabilidades_conjunta[j][i]/marginal_X[i][0]
+                resualtado = probabilidades_conjunta[j][i]/marginal_X[0][i]
                 matriz_condicional[j][i]=resualtado
         return matriz_condicional
 
-
+    # TODO: Cambiar la implementación ya que me genera un vector
     def esperanza_condicional_X_Y(self, probabilidad_condicional_X_Y, valores_X):
-        sumatoria=0
+        vector_condicional=[]
         for i in range(0,len(valores_X)):
+            sumatoria=0
             for j in range(0,len(probabilidad_condicional_X_Y)):
                 sumatoria = sumatoria + probabilidad_condicional_X_Y[j][i]*valores_X[i]
-        return sumatoria
+            vector_condicional.append(sumatoria)
+        return vector_condicional
 
+    # TODO: Cambiar la implementación ya que me genera un vector
     def esperanza_condicional_Y_X(self, probabilidad_condicional_Y_X, valores_Y):
-        sumatoria= 0
+        vector_condicional=[]
         for i in range(0,len(valores_Y)):
+            sumatoria= 0
             for j in range(0,len(probabilidad_condicional_Y_X[i])):
                 sumatoria = sumatoria + probabilidad_condicional_Y_X[i][j]*valores_Y[i]
-        return sumatoria
+            vector_condicional.append(sumatoria)
+        return vector_condicional
 
     def desviacion_X(self, valores_variable, marginal_valores, esperanza_X):
         sumatoria=0
         for i in range(0,len(valores_variable)):
-            sumatoria=sumatoria + valores_variable[i]**2*(marginal_valores[i][0])
+            sumatoria=sumatoria + valores_variable[i]**2*(marginal_valores[0][i])
         return np.sqrt(sumatoria-esperanza_X**2)
 
     def desviacion_Y(self, valores_variable, marginal_valores, esperanza_Y):
         sumatoria=0
         for i in range(0,len(valores_variable)):
-            sumatoria=sumatoria + valores_variable[i]**2*(marginal_valores[0][i])
+            sumatoria=sumatoria + valores_variable[i]**2*(marginal_valores[i][0])
         return np.sqrt(sumatoria-esperanza_Y**2)
 
     def coeficiente_correlacion(self, covarianza, desviacion_X, desviacion_Y):
