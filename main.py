@@ -38,10 +38,10 @@ def imprimir_resultados():
     esperanza_condicional_Y_X=distribucion.esperanza_condicional_Y_X(probabilidad_condicional_Y_X, distribucion.valores_Y)
 
     print("\nValor esperado de X|Y: \n")
-    print(esperanza_condicional_X_Y)
+    u.imprimir_vector(esperanza_condicional_X_Y)
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
     print("\nValor esperado de Y|X: \n")
-    print(esperanza_condicional_Y_X)
+    u.imprimir_vector(esperanza_condicional_Y_X)
     print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n")
 
     esperanza_conjunta= distribucion.esperanza_conjunta(distribucion.valores_X, distribucion.valores_Y, distribucion.probabilidades_conjunta)

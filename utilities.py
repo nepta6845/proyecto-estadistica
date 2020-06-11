@@ -1,3 +1,10 @@
+def imprimir_vector(vector):
+    for i in  range(0,len(vector)):
+        if (i < len(vector)-1):
+            print(vector[i],"  ", end = '')
+        else:
+            print(vector[i])
+
 def imprimir_arregloNx1(arreglo):
     for i in  range(0,len(arreglo)):
         if (i < len(arreglo)-1):
